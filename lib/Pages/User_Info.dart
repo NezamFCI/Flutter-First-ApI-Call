@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 
 class UserInfoList extends StatefulWidget {
@@ -15,6 +16,17 @@ class _UserInfoListState extends State<UserInfoList> {
     var response =
         await http.get(Uri.parse("https://jsonplaceholder.typicode.com/posts"));
     return jsonDecode(response.body);
+  }
+
+  void customToasMessage() {
+    Fluttertoast.showToast(
+        msg: "Hello",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+        fontSize: 16.0);
   }
 
   @override
@@ -39,8 +51,13 @@ class _UserInfoListState extends State<UserInfoList> {
                           child: Text(
                               asyncSnapshot.data[position]["id"].toString()),
                         ),
-                        title: Text(
-                            asyncSnapshot.data[position]["title"].toString()),
+                        title: GestureDetector(
+                          child: Text(
+                              asyncSnapshot.data[position]["title"].toString()),
+                          onTap: () {
+                            customToasMessage();
+                          },
+                        ),
                         subtitle: Text(
                             asyncSnapshot.data[position]["body"].toString()),
                       ),
