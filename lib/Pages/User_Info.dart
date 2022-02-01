@@ -25,7 +25,7 @@ class _UserInfoListState extends State<UserInfoList> {
         gravity: ToastGravity.CENTER,
         timeInSecForIosWeb: 1,
         backgroundColor: Colors.red,
-        textColor: Colors.white,
+        textColor: Colors.blue,
         fontSize: 16.0);
   }
 
